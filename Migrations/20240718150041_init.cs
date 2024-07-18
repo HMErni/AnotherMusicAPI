@@ -40,7 +40,7 @@ namespace AnotherMusicAPI.Migrations
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "GenreId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

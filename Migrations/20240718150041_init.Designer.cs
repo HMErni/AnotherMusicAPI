@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnotherMusicAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240718093058_init")]
+    [Migration("20240718150041_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -66,12 +66,17 @@ namespace AnotherMusicAPI.Migrations
             modelBuilder.Entity("AnotherMusicAPI.Model.Music", b =>
                 {
                     b.HasOne("AnotherMusicAPI.Model.Genre", "Genre")
-                        .WithMany()
+                        .WithMany("Musics")
                         .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("AnotherMusicAPI.Model.Genre", b =>
+                {
+                    b.Navigation("Musics");
                 });
 #pragma warning restore 612, 618
         }
