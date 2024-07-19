@@ -9,6 +9,11 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IMusicRepo, MusicRepo>();
+builder.Services.AddScoped<IGenreRepo, GenreRepo>();
+
 
 
 builder.Services.AddControllers();
