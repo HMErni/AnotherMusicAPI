@@ -67,7 +67,7 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpDelete("{genreId}")]
-        public async Task<ActionResult<GenreReadDTO>> DeleteGenre(int genreId)
+        public async Task<ActionResult> DeleteGenre(int genreId)
         {
             var genre = await _repository.GetGenreById(genreId);
             if (genre == null)
@@ -76,7 +76,7 @@ namespace AnotherMusicAPI.Controllers
             _repository.DeleteGenre(genre);
             await _repository.SaveChanges();
 
-            return Ok(_mapper.Map<GenreReadDTO>(genre));
+            return NoContent();
         }
 
 

@@ -38,12 +38,14 @@ namespace AnotherMusicAPI.Data
 
         public async Task<IEnumerable<Music>> GetAllMusics()
         {
-            return await _context.Musics.Include(x => x.Genre).ToListAsync();
+            return await _context.Musics.Include(x => x.Genre)
+                .Include(x => x.Artists).ToListAsync();
         }
 
         public async Task<Music?> GetMusicById(int musicId)
         {
-            return await _context.Musics.Include(x => x.Genre).FirstOrDefaultAsync(x => x.MusicId == musicId);
+            return await _context.Musics.Include(x => x.Genre)
+                .Include(x => x.Artists).FirstOrDefaultAsync(x => x.MusicId == musicId);
         }
 
         public async Task<bool> SaveChanges()

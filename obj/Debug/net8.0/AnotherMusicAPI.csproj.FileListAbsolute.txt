@@ -275,3 +275,4 @@ D:\Development\AnotherMusicAPI\obj\Debug\net8.0\refint\AnotherMusicAPI.dll
 D:\Development\AnotherMusicAPI\obj\Debug\net8.0\AnotherMusicAPI.pdb
 D:\Development\AnotherMusicAPI\obj\Debug\net8.0\AnotherMusicAPI.genruntimeconfig.cache
 D:\Development\AnotherMusicAPI\obj\Debug\net8.0\ref\AnotherMusicAPI.dll
+C:\_ERNI-Hero\AnotherMusicAPI\obj\Debug\net8.0\AnotherMusicAPI.sourcelink.json

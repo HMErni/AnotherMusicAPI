@@ -14,4 +14,10 @@ public class Music
 
     [JsonIgnore]
     public Genre? Genre { get; set; }
+
+
+    [JsonIgnore]
+    public virtual ICollection<Artist> Artists { get; set; } = new List<Artist>();
+    [JsonIgnore]
+    public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
 }

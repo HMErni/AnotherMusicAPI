@@ -15,12 +15,14 @@ namespace AnotherMusicAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IMusicRepo _repository;
         private readonly IGenreRepo _genreRepo;
+        private readonly IArtistRepo _artistRepo;
 
-        public MusicController(IMusicRepo repository, IGenreRepo genreRepo, IMapper mapper)
+        public MusicController(IMusicRepo repository, IGenreRepo genreRepo, IArtistRepo artistRepo, IMapper mapper)
         {
             _mapper = mapper;
             _repository = repository;
             _genreRepo = genreRepo;
+            _artistRepo = artistRepo;
         }
 
         [HttpGet]
@@ -54,6 +56,18 @@ namespace AnotherMusicAPI.Controllers
 
             music.Genre = genre;
 
+            var artists = new List<Artist>();
+            foreach (var artistId in musicDTO.ArtistIds)
+            {
+                var artist = await _artistRepo.GetArtistById(artistId);
+                if (artist == null)
+                    return BadRequest("Artist not found");
+
+                artists.Add(artist);
+            }
+
+            music.Artists = artists;
+
             await _repository.CreateMusic(music);
             await _repository.SaveChanges();
 
@@ -72,6 +86,19 @@ namespace AnotherMusicAPI.Controllers
 
             _mapper.Map(musicDTO, music);
 
+            var artists = new List<Artist>();
+            
+            foreach (var artistId in musicDTO.ArtistIds)
+            {
+                var artist = await _artistRepo.GetArtistById(artistId);
+                if (artist == null)
+                    return BadRequest("Artist not found");
+
+                artists.Add(artist);
+            }
+
+            music.Artists = artists;
+            
             await _repository.UpdateMusic(music);
             await _repository.SaveChanges();
 
@@ -79,7 +106,7 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpDelete("{musicId}")]
-        public async Task<ActionResult<MusicReadDTO>> DeleteMusic(int musicId)
+        public async Task<ActionResult> DeleteMusic(int musicId)
         {
             var music = await _repository.GetMusicById(musicId);
             if (music == null)
@@ -88,7 +115,7 @@ namespace AnotherMusicAPI.Controllers
             _repository.DeleteMusic(music);
             await _repository.SaveChanges();
 
-            return Ok(_mapper.Map<MusicReadDTO>(music));
+            return NoContent();
         }
     }
 }
