@@ -21,18 +21,20 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ArtistReadDTO>>> GetAllArtists(){
+        public async Task<ActionResult<IEnumerable<ArtistReadDTO>>> GetAllArtists()
+        {
             var artists = await _artistRepo.GetAllArtists();
             return Ok(_mapper.Map<IEnumerable<ArtistReadDTO>>(artists));
         }
 
         [HttpGet("{artistId}")]
-        public async Task<ActionResult<ArtistReadDTO>> GetArtistById(int artistId){
+        public async Task<ActionResult<ArtistReadDTO>> GetArtistById(int artistId)
+        {
             var artist = await _artistRepo.GetArtistById(artistId);
             if (artist == null)
                 return NotFound();
 
-            return Ok(_mapper.Map<ArtistReadDTO>(artist)); 
+            return Ok(_mapper.Map<ArtistReadDTO>(artist));
         }
 
         [HttpPost]
@@ -59,7 +61,7 @@ namespace AnotherMusicAPI.Controllers
             await _artistRepo.UpdateArtist(artist);
             await _artistRepo.SaveChanges();
 
-            return NoContent();
+            return Ok(artist);
         }
 
         [HttpDelete("{artistId}")]
@@ -74,6 +76,6 @@ namespace AnotherMusicAPI.Controllers
 
             return NoContent();
         }
-        
+
     }
 }

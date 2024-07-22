@@ -109,6 +109,38 @@ namespace AnotherMusicAPI.Migrations
                     b.ToTable("Musics");
                 });
 
+            modelBuilder.Entity("AnotherMusicAPI.Model.Playlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Playlists");
+                });
+
+            modelBuilder.Entity("AnotherMusicAPI.Model.PlaylistMusic", b =>
+                {
+                    b.Property<int>("MusicId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlaylistId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MusicId", "PlaylistId");
+
+                    b.HasIndex("PlaylistId");
+
+                    b.ToTable("PlaylistMusic");
+                });
+
             modelBuilder.Entity("ArtistMusic", b =>
                 {
                     b.Property<int>("ArtistsId")
@@ -148,6 +180,21 @@ namespace AnotherMusicAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("AnotherMusicAPI.Model.PlaylistMusic", b =>
+                {
+                    b.HasOne("AnotherMusicAPI.Model.Music", null)
+                        .WithMany()
+                        .HasForeignKey("MusicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AnotherMusicAPI.Model.Playlist", null)
+                        .WithMany()
+                        .HasForeignKey("PlaylistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ArtistMusic", b =>

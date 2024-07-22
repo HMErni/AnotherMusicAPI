@@ -63,7 +63,7 @@ namespace AnotherMusicAPI.Controllers
             await _repository.UpdateGenre(genre);
             await _repository.SaveChanges();
 
-            return NoContent();
+            return Ok(genre);
         }
 
         [HttpDelete("{genreId}")]

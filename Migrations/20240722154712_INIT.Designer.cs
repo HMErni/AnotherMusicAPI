@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnotherMusicAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240719090904_AlbumModel")]
-    partial class AlbumModel
+    [Migration("20240722154712_INIT")]
+    partial class INIT
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

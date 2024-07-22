@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_ERNI-Hero\\AnotherMusicAPI\\AnotherMusicAPI.csproj": {}
+    "D:\\Development\\AnotherMusicAPI\\AnotherMusicAPI.csproj": {}
   },
   "projects": {
-    "C:\\_ERNI-Hero\\AnotherMusicAPI\\AnotherMusicAPI.csproj": {
+    "D:\\Development\\AnotherMusicAPI\\AnotherMusicAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_ERNI-Hero\\AnotherMusicAPI\\AnotherMusicAPI.csproj",
+        "projectUniqueName": "D:\\Development\\AnotherMusicAPI\\AnotherMusicAPI.csproj",
         "projectName": "AnotherMusicAPI",
-        "projectPath": "C:\\_ERNI-Hero\\AnotherMusicAPI\\AnotherMusicAPI.csproj",
-        "packagesPath": "C:\\Users\\Boot Camp\\.nuget\\packages\\",
-        "outputPath": "C:\\_ERNI-Hero\\AnotherMusicAPI\\obj\\",
+        "projectPath": "D:\\Development\\AnotherMusicAPI\\AnotherMusicAPI.csproj",
+        "packagesPath": "C:\\Users\\Hero\\.nuget\\packages\\",
+        "outputPath": "D:\\Development\\AnotherMusicAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Boot Camp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Hero\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
