@@ -20,4 +20,6 @@ public class Music
     public virtual ICollection<Artist> Artists { get; set; } = new List<Artist>();
     [JsonIgnore]
     public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
+    [JsonIgnore]
+    public virtual ICollection<Playlist> Playlists { get; set; } = new List<Playlist>();
 }

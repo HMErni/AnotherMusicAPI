@@ -87,7 +87,7 @@ namespace AnotherMusicAPI.Controllers
             _mapper.Map(musicDTO, music);
 
             var artists = new List<Artist>();
-            
+
             foreach (var artistId in musicDTO.ArtistIds)
             {
                 var artist = await _artistRepo.GetArtistById(artistId);
@@ -98,11 +98,11 @@ namespace AnotherMusicAPI.Controllers
             }
 
             music.Artists = artists;
-            
+
             await _repository.UpdateMusic(music);
             await _repository.SaveChanges();
 
-            return NoContent();
+            return Ok(music);
         }
 
         [HttpDelete("{musicId}")]

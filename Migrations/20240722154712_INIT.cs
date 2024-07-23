@@ -5,13 +5,13 @@
 namespace AnotherMusicAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class INIT : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Album",
+                name: "Albums",
                 columns: table => new
                 {
                     AlbumId = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace AnotherMusicAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Album", x => x.AlbumId);
+                    table.PrimaryKey("PK_Albums", x => x.AlbumId);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,9 +80,9 @@ namespace AnotherMusicAPI.Migrations
                 {
                     table.PrimaryKey("PK_AlbumMusic", x => new { x.AlbumsAlbumId, x.MusicsMusicId });
                     table.ForeignKey(
-                        name: "FK_AlbumMusic_Album_AlbumsAlbumId",
+                        name: "FK_AlbumMusic_Albums_AlbumsAlbumId",
                         column: x => x.AlbumsAlbumId,
-                        principalTable: "Album",
+                        principalTable: "Albums",
                         principalColumn: "AlbumId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -143,7 +143,7 @@ namespace AnotherMusicAPI.Migrations
                 name: "ArtistMusic");
 
             migrationBuilder.DropTable(
-                name: "Album");
+                name: "Albums");
 
             migrationBuilder.DropTable(
                 name: "Artists");

@@ -22,13 +22,15 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AlbumReadDTO>>> GetAllAlbums(){
+        public async Task<ActionResult<IEnumerable<AlbumReadDTO>>> GetAllAlbums()
+        {
             var albums = await _repository.GetAllAlbums();
             return Ok(_mapper.Map<IEnumerable<AlbumReadDTO>>(albums));
         }
 
         [HttpGet("{albumId}")]
-        public async Task<ActionResult<AlbumReadDTO>> GetAlbumById(int albumId){
+        public async Task<ActionResult<AlbumReadDTO>> GetAlbumById(int albumId)
+        {
             var album = await _repository.GetAlbumById(albumId);
             if (album == null)
                 return NotFound();
@@ -37,10 +39,11 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AlbumCreateDTO>> CreateAlbum([FromBody] AlbumCreateDTO albumDTO){
-            
+        public async Task<ActionResult<AlbumCreateDTO>> CreateAlbum([FromBody] AlbumCreateDTO albumDTO)
+        {
+
             var album = _mapper.Map<Album>(albumDTO);
-            
+
             var musics = new List<Music>();
             foreach (var musicId in albumDTO.MusicIds)
             {
@@ -62,7 +65,8 @@ namespace AnotherMusicAPI.Controllers
         }
 
         [HttpPut("{albumId}")]
-        public async Task<ActionResult<AlbumUpdateDTO>> UpdateAlbum(int albumId, AlbumUpdateDTO albumDTO){
+        public async Task<ActionResult<AlbumUpdateDTO>> UpdateAlbum(int albumId, AlbumUpdateDTO albumDTO)
+        {
             var album = await _repository.GetAlbumById(albumId);
             if (album == null)
                 return NotFound();
@@ -70,7 +74,8 @@ namespace AnotherMusicAPI.Controllers
             _mapper.Map(albumDTO, album);
 
             var musics = new List<Music>();
-            foreach (var musicId in albumDTO.MusicIds){
+            foreach (var musicId in albumDTO.MusicIds)
+            {
                 var music = await _musicRepo.GetMusicById(musicId);
                 if (music == null)
                     return BadRequest("Music not found");
@@ -83,11 +88,12 @@ namespace AnotherMusicAPI.Controllers
             await _repository.UpdateAlbum(album);
             await _repository.SaveChanges();
 
-            return NoContent();
+            return Ok(album);
         }
 
         [HttpDelete("{albumId}")]
-        public async Task<ActionResult> DeleteAlbum(int albumId){
+        public async Task<ActionResult> DeleteAlbum(int albumId)
+        {
             var album = await _repository.GetAlbumById(albumId);
             if (album == null)
                 return NotFound();
